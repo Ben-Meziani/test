@@ -41,7 +41,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Document::class, mappedBy="users", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Document::class, mappedBy="users", orphanRemoval=true, cascade={"persist"})
      */
     private $documents;
 

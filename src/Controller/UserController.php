@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Document;
 use App\Form\EditProfileType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,6 +33,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+            self::uploadImage($form, $user);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
@@ -65,6 +67,22 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/editpass.html.twig');
+    }
+
+    public function uploadImage($form, $user)
+    {
+        $documents = $form->get('documents')->getData();
+        foreach($documents as $document){
+            $file = md5(uniqid()).'.'.$document->guessExtension();
+            $document->move(
+                $this->getParameter('documents_directory'),
+                $file
+            );
+            
+            $doc = new Document();
+            $doc->setName($file);
+            $user->addDocument($doc);
+        }
     }
 
 }

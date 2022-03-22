@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Document;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\UserAuthenticator;
@@ -48,4 +49,21 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
+    public function uploadImage($form, $user)
+    {
+        $documents = $form->get('documents')->getData();
+        foreach($documents as $document){
+            $file = md5(uniqid()).'.'.$document->guessExtension();
+            $document->move(
+                $this->getParameter('documents_directory'),
+                $file
+            );
+            
+            $doc = new Document();
+            $doc->setName($file);
+            $user->addDocument($doc);
+        }
+    }
+
+
 }
