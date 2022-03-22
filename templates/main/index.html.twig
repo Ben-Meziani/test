@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur mon test !{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Bienvenue sur mon test  !</h1>
+</div>
+{% if app.user %}
+    <h3>Profil de {{ app.user.firstname }} {{ app.user.name }}</h3>  : <a href="{{ path('app_user') }}">Mon Profil</a>
+{% endif %}
+
+{% endblock %}
