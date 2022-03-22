@@ -37,7 +37,7 @@ class UserController extends AbstractController
             $em->flush();
 
             $this->addFlash('message', 'Profile updated');
-            return $this->redirectToRoute('users');
+            return $this->redirectToRoute('app_user');
         }
 
         return $this->render('user/editprofile.html.twig', [
@@ -58,7 +58,7 @@ class UserController extends AbstractController
                 $em->flush();
                 $this->addFlash('message', 'Password updated with success');
 
-                return $this->redirectToRoute('users');
+                return $this->redirectToRoute('app_user');
             }else{
                 $this->addFlash('error', 'The 2 passwords are not identicals');
             }

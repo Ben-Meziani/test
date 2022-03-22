@@ -14,12 +14,24 @@
 		<header>
 			<nav class="navbar primary">
 				<a href="" class="navbar-brand">TechnicalAssessment</a>
-				{# <a href="{{ path('app_home') }}" class="navbar-brand">PetitesAnnonces</a> #}
-				<div class="navbar-menu ml-auto">
-					<a class="navbar-link" href="#">Accueil</a>
-					<a class="navbar-link" href="#">Link 2</a>
-					<a class="navbar-link" href="#">Link 3</a>
-					<a class="navbar-link" href="#">Link 4</a>
+ {% if app.user %}
+        <li class="nav-item">
+          {% if "ROLE_ADMIN" in app.user.roles %}
+          Administrateur
+           {% else %}
+                Utilisateur   {{ app.user.firstname }} 
+            {% endif %}
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+        {% endif %}
 				</div>
 			</nav>
 		</header>
@@ -31,7 +43,7 @@
 				<img class="logo dropshadow-1" src="your_img_path" alt="Logo"/>
 			</div>
 			<a href="#" class="sidenav-link active">Mon profil</a>
-			<a href="#" class="sidenav-link">Mes annonces</a>
+			<a href="#" class="sidenav-link">Mes documents</a>
 		</div>
 		<main>
 			<button data-target="example-sidenav" class="btn press amaranth dark-1 sidenav-trigger hide-md-up">
