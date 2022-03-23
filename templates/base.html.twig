@@ -13,24 +13,24 @@
         <nav class="navbar primary">
             <a href="{{ path('app_home') }}" class="navbar-brand">TechnicalAssessement</a>
             <div class="navbar-menu ml-auto">
-            <a class="navbar-link" href="{{ path('app_home') }}">Accueil</a>
+            <a class="navbar-link" href="{{ path('app_home') }}">Home</a>
  {% if app.user %}
         <li class="nav-item">
           {% if "ROLE_ADMIN" in app.user.roles %}
           Administrateur
            {% else %}
-                Utilisateur   {{ app.user.firstname }} 
+                User   {{ app.user.firstname }} 
             {% endif %}
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+          <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
         </li>
         {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+          <a class="nav-link" href="{{ path('app_login') }}">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+          <a class="nav-link" href="{{ path('app_register') }}">Register</a>
         {% endif %}
            
             </div>

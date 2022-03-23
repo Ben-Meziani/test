@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DocumentController!{% endblock %}
+
+{% block body %}
+{# {% for doc in documents %}
+<embed src="/uploads/{{doc.name}}" width="100" height="100">
+<a class="btn btn-primary" href="/uploads/{{doc.name}}" target="_blank">Show Pdf</a>
+{% endfor %} #}
+
+	<div class="container mt-4">
+		<div class="row">
+			{% for doc in documents %}
+            <embed src="/uploads/{{doc.name}}" width="100" height="100">
+<a class="btn btn-primary" href="/uploads/{{doc.name}}" target="_blank">Show Pdf</a>
+{% endfor %}
+		</div>
+	</div>
+{% endblock %}

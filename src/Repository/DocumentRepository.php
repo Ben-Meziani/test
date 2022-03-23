@@ -44,6 +44,17 @@ class DocumentRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+     /**
+     *
+     * @return Document[]
+     */
+    public function findDocumentsByUserID($userId)
+    {
+        return $this->createQueryBuilder('document')
+        ->andWhere('document.id = :'.$userId.'')
+        ->getQuery()
+        ->getResult();
+    } 
 
     // /**
     //  * @return Document[] Returns an array of Document objects
