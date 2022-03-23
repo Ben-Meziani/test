@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Document;
 use App\Form\EditProfileType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -85,4 +86,19 @@ class UserController extends AbstractController
         }
     }
 
+    /**
+     * @Route("/delete/document/{id}", name="user_delete_document", requirements={"id" = "\d+"}, methods={"DELETE"})
+     */
+    public function deleteDocument(Document $document, Request $request){
+        $data = json_decode($request->getContent(), true);
+        if($this->isCsrfTokenValid('delete'.$document->getId(),$data['_token'])){
+            $name =$document->getName();
+            unlink($this->getParameter('documents_directory').'/'.$name);
+            $manager = $this->getDoctrine()->getManager();
+            $manager->remove($document);
+            $manager->flush();
+            return new JsonResponse(['success' => 1]);
+        }
+        return new JsonResponse(['error' => 'Token invalide'], 400);
+    }
 }

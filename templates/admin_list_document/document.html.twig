@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+<div class="container" mt-4>
+    <h1>Liste de tout les documents</h1>
+    <table class="table table-striped">
+        <thead>
+            <th>ID</th>
+            <th>User name</th>
+            <th>Document</th>
+        </thead>
+        <tbody>
+            {% for document in documents %}
+                <tr>
+                    <td>{{ document.id }}</td>
+                    <td>{{ document.users.firstname}} {{ document.users.name}}</td>
+                    <td><embed src="/uploads/{{document.name}}" width="50" height="50">
+				    <a class="btn btn-primary" href="/uploads/{{document.name}}" target="_blank">Show Pdf</a></td>
+                </tr>            
+            {% else %}
+                <p>Aucun utilisateur inscrit</p>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

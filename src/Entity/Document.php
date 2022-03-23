@@ -28,11 +28,6 @@ class Document
      */
     private $users;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $typeOfDocument;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -58,18 +53,6 @@ class Document
     public function setUsers(?User $users): self
     {
         $this->users = $users;
-
-        return $this;
-    }
-
-    public function getTypeOfDocument(): ?string
-    {
-        return $this->typeOfDocument;
-    }
-
-    public function setTypeOfDocument(?string $typeOfDocument): self
-    {
-        $this->typeOfDocument = $typeOfDocument;
 
         return $this;
     }

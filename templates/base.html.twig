@@ -17,7 +17,13 @@
  {% if app.user %}
         <li class="nav-item">
           {% if "ROLE_ADMIN" in app.user.roles %}
-          Administrateur
+          Administrateur {{ app.user.firstname }}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('admin_list_user') }}">User list</a>
+        </li>
+                <li class="nav-item">
+          <a class="nav-link" href="{{ path('admin_list_document') }}">Document list</a>
+        </li>
            {% else %}
                 User   {{ app.user.firstname }} 
             {% endif %}
@@ -48,6 +54,6 @@
             let drop = new Axentix.Dropdown('#dropdown')
         </script>
         {% endblock %}
-        <script src="{{ asset('js/scripts.js') }}"></script>
+        <script src="{{ asset('js/document.js') }}"></script>
     </body>
 </html>

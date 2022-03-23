@@ -15,13 +15,12 @@ class DocumentController extends AbstractController
     public function index(): Response
     {
         $userId = $this->getUser()->getId();
-        // // dd($userId);
-        // $allDocsUser = $docRepo->findDocumentsByUserID($userId);
+
         $em = $this->getDoctrine()->getManager();
         $queryDocsUser = $em->createQuery(
             '
             SELECT
-                d.name
+                d.name, d.id
             FROM 
                 App\Entity\Document d
             WHERE
