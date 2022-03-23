@@ -17,20 +17,31 @@
  {% if app.user %}
         <li class="nav-item">
           {% if "ROLE_ADMIN" in app.user.roles %}
-          Administrateur
+        </li>
+            Admin {{ app.user.firstname }}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('admin_list_user') }}">User list</a>
+        </li>
+                <li class="nav-item">
+          <a class="nav-link" href="{{ path('admin_list_document') }}">Document list</a>
+        </li>
            {% else %}
                 Utilisateur   {{ app.user.firstname }} 
             {% endif %}
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                    <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
         </li>
         {% else %}
         <li class="nav-item">
           <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+            <a class="nav-link" href="{{ path('app_login') }}">Login</a>
+        </li>
+		<li class="nav-item">
+          <a class="nav-link" href="{{ path('app_register') }}">Register</a>
+        </li>
         {% endif %}
 				</div>
 			</nav>
@@ -40,10 +51,9 @@
 				<button data-target="example-sidenav" class="sidenav-trigger">
 					<i class="fas fa-times"></i>
 				</button>
-				<img class="logo dropshadow-1" src="your_img_path" alt="Logo"/>
 			</div>
-			<a href="{{ path('app_user') }}" class="sidenav-link active">Mon profil</a>
-			<a href="{{ path('app_document') }}" class="sidenav-link">Mes documents</a>
+			<a href="{{ path('app_user') }}" class="sidenav-link active">My profile</a>
+			<a href="{{ path('app_document') }}" class="sidenav-link">My documents</a>
 		</div>
 		<main>
 			<button data-target="example-sidenav" class="btn press amaranth dark-1 sidenav-trigger hide-md-up">

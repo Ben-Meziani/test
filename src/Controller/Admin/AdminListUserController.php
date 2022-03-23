@@ -25,7 +25,7 @@ class AdminListUserController extends AbstractController
         ]);
     }
 
-    /**
+/**
  * @Route("/edit_user/{id}", name="edit_user")
  */
 public function editUser(User $user, Request $request)
@@ -38,7 +38,7 @@ public function editUser(User $user, Request $request)
         $entityManager->persist($user);
         $entityManager->flush();
 
-        $this->addFlash('message', 'Utilisateur modifié avec succès');
+        $this->addFlash('message', 'User modified with success');
         return $this->redirectToRoute('admin_list_user');
     }
     return $this->render('admin_list_user/edituser.html.twig', [
